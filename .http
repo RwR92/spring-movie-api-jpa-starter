@@ -14,3 +14,60 @@ Content-Type: application/json
 
 ### GET MOVIES BY ID
 GET http://localhost:8080/api/movies/1
+
+### CREATE A MOVIE
+POST http://localhost:8080/api/movies
+Content-Type: application/json
+
+{
+  "title": "Inception",
+  "releaseYear": 2010,
+  "genre": "Sci-Fi",
+  "rating": {"score": 8.8, "voteCount": 2000000}
+}
+
+### CREATE ACTOR
+POST http://localhost:8080/api/actors
+Content-Type: application/json
+
+{"name": "Leonardo DiCaprio", "birthYear": 1974}
+
+### ADD ACTOR NO 2
+POST http://localhost:8080/api/actors
+Content-Type: application/json
+
+{"name": "Joseph Gordon-Levitt", "birthYear": 1981}
+
+### ASSIGN ACTOR NO 1 TO MOVIE
+POST http://localhost:8080/api/movies/1/actors/1
+
+### ASSIGN ACTOR NO 2 TO MOVIE
+POST http://localhost:8080/api/movies/1/actors/2
+
+### VERIFY MOVIE WITH ACTORS
+GET http://localhost:8080/api/movies/1
+
+### ADD MOVIE
+POST http://localhost:8080/api/movies
+Content-Type: application/json
+
+{
+  "title": "The Dark Knight",
+  "releaseYear": 2008,
+  "genre": "Action",
+  "rating": {"score": 9.0, "voteCount": 2500000}
+}
+
+### ADD MOVIE DETAILS
+POST http://localhost:8080/api/movies/1/details
+Content-Type: application/json
+
+{
+  "plot": "Batman faces the Joker in a battle for Gotham soul.",
+  "budget": 185000000,
+  "runtime": 152,
+  "productionCompany": "Warner Bros"
+}
+
+### VERIFY MOVIE WITH DETAILS
+GET http://localhost:8080/api/movies/1

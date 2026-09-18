@@ -1,9 +1,7 @@
 package ek.osnb.starter.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 
 @Entity
 public class MovieDetails {
@@ -16,6 +14,10 @@ public class MovieDetails {
     private Integer runtime; // in minutes
     private String productionCompany;
 
+    @OneToOne(mappedBy = "movieDetails")
+    @JsonManagedReference
+    private Movie movie;
+
     // Constructors
     public MovieDetails() {}
 
@@ -27,6 +29,13 @@ public class MovieDetails {
     }
 
     // Getters and Setters
+    public void setMovie(Movie movie){
+        this.movie = movie;
+    }
+
+    public Movie getMovie(){
+        return movie;
+    }
     public Long getId() {
         return id;
     }

@@ -1,6 +1,10 @@
 package ek.osnb.starter.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Movie {
@@ -13,6 +17,22 @@ public class Movie {
     private String genre;
     @Embedded
     private Rating rating;
+
+
+    @ManyToMany
+    @JoinTable(
+            name = "movie_actor",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "actor_id")
+    )
+    private List<Actor> actors = new ArrayList<>();
+
+
+
+    @OneToOne()
+    @JoinColumn(name = "movie_details_id")
+    @JsonBackReference
+    private MovieDetails movieDetails;
 
     public Movie() {}
 
@@ -61,4 +81,22 @@ public class Movie {
     public void setRating(Rating rating){
         this.rating = rating;
     }
+
+
+    public List<Actor> getActors() {
+        return actors;
+    }
+
+    public void setActor(Actor actor) {
+        actors.add(actor);
+    }
+
+    public MovieDetails getMovieDetails() {
+        return movieDetails;
+    }
+
+    public void setMovieDetails(MovieDetails movieDetails) {
+        this.movieDetails = movieDetails;
+    }
+
 }
